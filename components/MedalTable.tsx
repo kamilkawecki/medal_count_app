@@ -1,15 +1,19 @@
 import { Medals } from "@/types/medal";
 import MedalBadge from "./MedalBadge";
 import FlagIcon from "./FlagIcon";
+import { SortKey } from "@/types/sortKey";
+import SortableHeader from "./SortableTableHeader";
 
 type MedalTableProps = {
   data: Medals[];
   countryCodesAlphabetical: string[];
+  sortKey: SortKey;
 };
 
 export default function MedalTable({
   data,
   countryCodesAlphabetical,
+  sortKey,
 }: MedalTableProps) {
   return (
     <table className="text-gray-700">
@@ -17,16 +21,18 @@ export default function MedalTable({
         <tr className="border-b-2 border-gray-400">
           <th></th>
           <th></th>
-          <th className="px-3 py-1 text-center">
+          <SortableHeader value="gold" currentSort={sortKey}>
             <MedalBadge type="gold" />
-          </th>
-          <th className="px-3 py-1 text-center">
+          </SortableHeader>
+          <SortableHeader value="silver" currentSort={sortKey}>
             <MedalBadge type="silver" />
-          </th>
-          <th className="px-3 py-1 text-center">
+          </SortableHeader>
+          <SortableHeader value="bronze" currentSort={sortKey}>
             <MedalBadge type="bronze" />
-          </th>
-          <th className="px-2 py-1 text-center uppercase">Total</th>
+          </SortableHeader>
+          <SortableHeader value="total" currentSort={sortKey}>
+            <span className="uppercase">total</span>
+          </SortableHeader>
         </tr>
       </thead>
       <tbody>

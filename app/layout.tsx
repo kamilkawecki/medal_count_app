@@ -13,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="w-fit mx-auto mt-12">{children}</div>
+      </body>
     </html>
   );
 }
