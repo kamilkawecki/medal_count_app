@@ -3,11 +3,16 @@
 import MedalTable from "@/components/MedalTable";
 import { Medals } from "@/types/medal";
 import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 export default function Home() {
   const [data, setData] = useState<Medals[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const countryCodesAlphabetical = useMemo(() => {
+    return data.map((country) => country.code).sort();
+  }, [data]);
 
   useEffect(() => {
     fetch("/api/medals")
@@ -29,9 +34,12 @@ export default function Home() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className="w-fit mx-auto mt-12">
       <h1 className="text-gray-700 uppercase">Medal Count</h1>
-      <MedalTable data={data} />
+      <MedalTable
+        data={data}
+        countryCodesAlphabetical={countryCodesAlphabetical}
+      />
     </div>
   );
 }
