@@ -1,5 +1,6 @@
 "use client";
 
+import MedalTable from "@/components/MedalTable";
 import { Medals } from "@/types/medal";
 import { useEffect, useState } from "react";
 
@@ -29,8 +30,8 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Medal Data</h1>
-      <div>{JSON.stringify(data, null, 2)}</div>
+      <h1 className="text-gray-700 uppercase">Medal Count</h1>
+      <MedalTable data={data} />
     </div>
   );
 }
